@@ -26,9 +26,15 @@
     <div id="clock">☀ 09:00</div>
     <div id="stockBadge" class="hidden" title="Yuva deposu">Depo <b id="stockCount">0</b></div>
     <div id="quest">
-      <div id="questTitle">Görev</div>
+      <div id="questHead"><div id="questTitle">Görev</div><button id="guideBtn" type="button" aria-label="Rehber">?</button></div>
       <ul id="questList"></ul>
       <div id="questBar"><i></i></div>
+    </div>
+    <div id="objMark" class="hidden"><svg id="objArrow" viewBox="0 0 40 40" width="40" height="40"><path d="M20 36 6 10c8 4 20 4 28 0z" fill="#ffd45a" stroke="#5b341a" stroke-width="3" stroke-linejoin="round"/></svg><b id="objDist"></b></div>
+    <div id="guide" class="hidden" role="dialog" aria-live="polite">
+      <div id="guideHead"><span id="guideIcon"></span><div><div id="guideKicker">YENİ GÖREV</div><b id="guideTitle"></b></div></div>
+      <ul id="guideLines"></ul>
+      <button id="guideOk" type="button">Anladım</button>
     </div>
     <canvas id="minimap" width="240" height="240" aria-label="Harita"></canvas>
     <button id="menuBtn" aria-label="Menü" class="round">

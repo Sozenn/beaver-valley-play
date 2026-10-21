@@ -142,3 +142,25 @@ button.big { background: linear-gradient(#f5b64e, #e08a1c); box-shadow: 0 6px 0 
 button.big:active { box-shadow: 0 2px 0 #9a5a10; }
 #loadBar { border-color: var(--woodline); }
 #actBtn { background: radial-gradient(circle at 35% 30%, #ffdc8a, #f2a233 58%, #c9731a); }
+
+/* Rehber kartı + görev oku */
+#questHead { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+#guideBtn { pointer-events: auto; width: 24px; height: 24px; border-radius: 50%; border: 2px solid #ffe2a8; background: rgba(0,0,0,.2); color: #ffe2a8; font: 800 14px/1 inherit; padding: 0; cursor: pointer; }
+#guideBtn:active { transform: scale(.9); }
+#guide { position: absolute; left: 50%; bottom: calc(150px + var(--sab)); transform: translateX(-50%); width: min(88vw, 430px); pointer-events: auto;
+  background: var(--paper); border: 4px solid var(--brown); border-radius: 22px; padding: 12px 16px 14px; box-shadow: var(--shadow); color: var(--brown); animation: guideIn .35s ease-out; z-index: 4; }
+@keyframes guideIn { from { opacity: 0; transform: translate(-50%, 18px) scale(.96); } to { opacity: 1; transform: translate(-50%, 0) scale(1); } }
+#guideHead { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+#guideIcon { font-size: 34px; line-height: 1; }
+#guideKicker { font-size: 11px; letter-spacing: .16em; font-weight: 800; color: var(--orange2); }
+#guideTitle { font-size: 20px; }
+#guideLines { margin: 6px 0 10px; padding-left: 20px; font-size: 14.5px; line-height: 1.4; font-weight: 600; }
+#guideLines li { margin: 3px 0; }
+#guideOk { width: 100%; height: 42px; border-radius: 21px; border: 3px solid var(--brown); background: linear-gradient(#ffd37a, var(--orange)); color: var(--brown); font: 800 16px inherit; box-shadow: 0 3px 0 rgba(91,52,26,.5); cursor: pointer; }
+#objMark { position: absolute; left: 0; top: 0; width: 56px; height: 64px; margin: -32px 0 0 -28px; display: flex; flex-direction: column; align-items: center; pointer-events: none; will-change: transform; }
+#objArrow { filter: drop-shadow(0 2px 2px rgba(0,0,0,.45)); transition: transform .08s linear; }
+#objMark.bob #objArrow { animation: objBob .9s ease-in-out infinite; }
+@keyframes objBob { 0%,100% { translate: 0 0; } 50% { translate: 0 6px; } }
+#objDist { font-size: 12px; font-weight: 800; color: #fff; text-shadow: 0 1px 0 var(--brown), 0 0 5px rgba(60,30,10,.8); margin-top: -2px; }
+@media (max-width: 700px), (max-height: 520px) { #guide { bottom: calc(140px + var(--sab)); padding: 10px 14px 12px; } #guideLines { font-size: 13.5px; } }@media (max-width: 700px), (max-height: 520px) { #questTitle { display: block; font-size: 10px; } }
+#guideLines b { color: var(--orange2); }
