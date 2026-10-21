@@ -36,6 +36,7 @@
       <ul id="guideLines"></ul>
       <button id="guideOk" type="button">Anladım</button>
     </div>
+    <button id="bagBtn" class="round" type="button" aria-label="Envanter"><svg viewBox="0 0 48 48" width="28" height="28"><path d="M12 18c0-8 5-12 12-12s12 4 12 12" fill="none" stroke="#fff3d6" stroke-width="3.5" stroke-linecap="round"/><path d="M8 20h32l-2 22a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4z" fill="#a8683a" stroke="#fff3d6" stroke-width="3" stroke-linejoin="round"/><rect x="16" y="28" width="16" height="9" rx="3" fill="none" stroke="#fff3d6" stroke-width="2.5"/></svg><b id="bagCount" class="hidden">0</b></button>
     <canvas id="minimap" width="240" height="240" aria-label="Harita"></canvas>
     <button id="menuBtn" aria-label="Menü" class="round">
       <svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 7h16M4 12h16M4 17h16" stroke="#5b341a" stroke-width="3" stroke-linecap="round"/></svg>
@@ -96,6 +97,15 @@
     </div>
   </div>
 
+  <div id="inv" class="screen hidden">
+    <div class="card">
+      <h2>Envanter</h2>
+      <div id="invGrid"></div>
+      <p class="small" id="invNote"></p>
+      <button id="invClose" class="big">Kapat</button>
+    </div>
+  </div>
+
   <div id="install" class="screen hidden">
     <div class="card">
       <h2 id="installTitle">Uygulama olarak yükle</h2>
@@ -105,6 +115,19 @@
     </div>
   </div>
 </div>
-<script src="game.js" defer></script>
+<script>window.__BV_EXPECT = 'v5';</script>
+<script src="game.js?v=v5" defer></script>
+<script>
+/* Sürüm uyuşmazsa (eski önbellek) önbelleği temizleyip bir kez yeniden yükle. */
+addEventListener('load', function () {
+  if (window.__BV_VER === window.__BV_EXPECT) return;
+  try { if (sessionStorage.getItem('bv-fix')) return; sessionStorage.setItem('bv-fix', '1'); } catch (e) { return; }
+  var run = async function () {
+    try { var rs = await navigator.serviceWorker.getRegistrations(); await Promise.all(rs.map(function (r) { return r.unregister(); })); var ks = await caches.keys(); await Promise.all(ks.map(function (k) { return caches.delete(k); })); } catch (e) {}
+    location.reload();
+  };
+  run();
+});
+</script>
 </body>
 </html>

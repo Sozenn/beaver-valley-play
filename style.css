@@ -164,3 +164,15 @@ button.big:active { box-shadow: 0 2px 0 #9a5a10; }
 #objDist { font-size: 12px; font-weight: 800; color: #fff; text-shadow: 0 1px 0 var(--brown), 0 0 5px rgba(60,30,10,.8); margin-top: -2px; }
 @media (max-width: 700px), (max-height: 520px) { #guide { bottom: calc(140px + var(--sab)); padding: 10px 14px 12px; } #guideLines { font-size: 13.5px; } }@media (max-width: 700px), (max-height: 520px) { #questTitle { display: block; font-size: 10px; } }
 #guideLines b { color: var(--orange2); }
+
+/* Envanter */
+#bagBtn { position: absolute; right: calc(14px + var(--sar)); top: calc(196px + var(--sat)); pointer-events: auto; }
+#bagBtn.pop { animation: pop .45s; }
+#bagCount { position: absolute; right: -6px; top: -6px; min-width: 22px; height: 22px; padding: 0 5px; border-radius: 11px; background: #e24a3a; color: #fff; border: 2px solid #fff3d6; font-size: 12px; display: grid; place-items: center; text-shadow: none; }
+@media (max-width: 700px), (max-height: 520px) { #bagBtn { top: calc(160px + var(--sat)); width: 46px; height: 46px; } }
+#invGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 12px 0 8px; }
+.slot { background: #fff3d6; border: 3px solid var(--brown); border-radius: 16px; padding: 8px 4px 8px; text-align: center; min-height: 104px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; box-shadow: inset 0 -4px 0 rgba(91,52,26,.12); }
+.slot svg { width: 42px; height: 42px; }
+.slot b { font-size: 22px; line-height: 1; }
+.slot span { font-size: 12px; font-weight: 700; opacity: .85; line-height: 1.15; }
+.slot.empty { opacity: .45; background: rgba(255,243,214,.55); border-style: dashed; }
