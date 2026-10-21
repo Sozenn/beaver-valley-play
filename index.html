@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#bfe3f2">
+<title>Beaver Valley</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🦫%3C/text%3E%3C/svg%3E">
+<style>
+  :root { --wood:#8a5a30; --wood-d:#5a3a1c; --cream:#fff4d6; --gold:#ffc94d; --ink:#3b2412; }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin:0; height:100%; overflow:hidden; background:#bfe3f2; font-family: "Trebuchet MS", system-ui, sans-serif; color:var(--ink);
+    user-select:none; -webkit-user-select:none; overscroll-behavior:none; }
+  #app { position:fixed; inset:0; height:100dvh; }
+  canvas { position:absolute; inset:0; width:100%; height:100%; display:block; touch-action:none; }
+  .hud { position:absolute; pointer-events:none; }
+  #top { top:max(10px, env(safe-area-inset-top)); left:max(12px, env(safe-area-inset-left)); right:max(12px, env(safe-area-inset-right));
+    display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+  .pill { background:rgba(255,244,214,.92); border:3px solid var(--wood); border-radius:999px; padding:6px 14px; font-weight:700; font-size:18px;
+    box-shadow:0 3px 0 var(--wood-d); }
+  #wood { white-space:nowrap; }
+  #objective { flex:1; text-align:center; font-size:15px; padding:7px 12px; border-radius:16px; max-width:420px; margin:0 auto; line-height:1.25; }
+  #btn-pause { pointer-events:auto; width:48px; height:48px; border-radius:50%; font-size:20px; border:3px solid var(--wood); background:var(--cream);
+    color:var(--ink); box-shadow:0 3px 0 var(--wood-d); font-weight:800; }
+  #joy { position:absolute; display:none; width:0; height:0; pointer-events:none; }
+  #joy::before { content:""; position:absolute; left:-52px; top:-52px; width:104px; height:104px; border-radius:50%;
+    background:rgba(255,244,214,.28); border:3px solid rgba(255,244,214,.7); }
+  #joy-knob { position:absolute; left:-24px; top:-24px; width:48px; height:48px; border-radius:50%; background:rgba(255,244,214,.9);
+    border:3px solid var(--wood); }
+  #actions { right:max(16px, env(safe-area-inset-right)); bottom:max(18px, env(safe-area-inset-bottom)); display:flex; flex-direction:column;
+    align-items:flex-end; gap:14px; pointer-events:none; }
+  .abtn { pointer-events:auto; touch-action:none; min-width:84px; height:84px; padding:0 16px; border-radius:42px; border:4px solid var(--wood);
+    background:var(--cream); color:var(--ink); font:800 18px "Trebuchet MS", system-ui, sans-serif; box-shadow:0 5px 0 var(--wood-d);
+    opacity:.55; transition:transform .08s, opacity .15s, background .15s; }
+  .abtn small { display:block; font-size:12px; font-weight:700; opacity:.8; }
+  .abtn.ready { opacity:1; background:var(--gold); }
+  .abtn.down { transform:translateY(4px); box-shadow:0 1px 0 var(--wood-d); }
+  #btn-build { display:none; height:64px; border-radius:32px; font-size:16px; }
+  #toast { left:50%; bottom:22%; transform:translateX(-50%); background:rgba(59,36,18,.88); color:var(--cream); padding:10px 18px;
+    border-radius:14px; font-weight:700; opacity:0; transition:opacity .25s; max-width:86vw; text-align:center; }
+  #toast.show { opacity:1; }
+  .floater { position:absolute; pointer-events:none; font-weight:800; font-size:24px; color:#fff; text-shadow:0 2px 0 var(--wood-d), 0 0 6px rgba(0,0,0,.35);
+    animation: rise 1s ease-out forwards; white-space:nowrap; }
+  @keyframes rise { from { transform:translate(-50%,0); opacity:1; } to { transform:translate(-50%,-64px); opacity:0; } }
+  #menu { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(40,25,10,.45); padding:16px; }
+  #menu.hidden { display:none; }
+  .card { background:var(--cream); border:5px solid var(--wood); border-radius:26px; box-shadow:0 8px 0 var(--wood-d); padding:22px 22px 20px;
+    width:min(420px, 100%); max-height:100%; overflow:auto; text-align:center; }
+  .card h1 { margin:0; font-size:34px; letter-spacing:.5px; }
+  .card p.sub { margin:4px 0 14px; opacity:.8; }
+  .card button.big { display:block; width:100%; height:56px; margin:10px 0; border-radius:28px; border:4px solid var(--wood); font:800 19px "Trebuchet MS", system-ui, sans-serif;
+    background:var(--gold); color:var(--ink); box-shadow:0 4px 0 var(--wood-d); }
+  .card button.big.alt { background:#fff; }
+  .card button.big.warn { background:#ffb4a0; }
+  .card ul { text-align:left; margin:12px 0 0; padding-left:20px; font-size:14px; line-height:1.55; }
+  #boot { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:20px; background:#bfe3f2; }
+</style>
+</head>
+<body>
+<div id="app">
+  <canvas id="c"></canvas>
+  <div id="joy"><div id="joy-knob"></div></div>
+
+  <div id="top" class="hud">
+    <div id="wood" class="pill">🪵 <span id="wood-n">0</span></div>
+    <div id="objective" class="pill">Yükleniyor…</div>
+    <button id="btn-pause" aria-label="Duraklat">❚❚</button>
+  </div>
+
+  <div id="actions" class="hud">
+    <button id="btn-build" class="abtn" type="button">🏠 Yuva Kur<small id="build-cost">8 odun</small></button>
+    <button id="btn-act" class="abtn" type="button">🪓 Kes<small>yakında ağaç yok</small></button>
+  </div>
+
+  <div id="toast" class="hud"></div>
+
+  <div id="menu">
+    <div class="card">
+      <h1>🦫 Beaver Valley</h1>
+      <p class="sub">Badi ile vadiyi keşfet, odun topla, yuvanı kur.</p>
+      <button id="m-play" class="big" type="button">Oyna</button>
+      <button id="m-reset" class="big alt" type="button">Yeni Oyun</button>
+      <ul>
+        <li><b>Bilgisayar:</b> WASD / oklar ile yürü, E veya Boşluk ile kes, B ile yuva kur, fareyle sürükleyip kamerayı çevir, tekerlekle yakınlaş.</li>
+        <li><b>Telefon:</b> sol yarıya dokunup sürükle = yürü, sağ yarıyı sürükle = kamera, sağ alttaki düğmeler = kes / yuva kur.</li>
+        <li>Ağaca yaklaş ve <b>Kes</b>'e bas. 8 odun toplayınca yuva kurabilirsin. Nehirde yüzebilirsin.</li>
+        <li>Oyun kendiliğinden kaydedilir.</li>
+      </ul>
+    </div>
+  </div>
+  <div id="boot">Yükleniyor…</div>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
