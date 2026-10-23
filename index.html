@@ -43,6 +43,7 @@
     <button id="menuBtn" aria-label="Menü" class="round">
       <svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 7h16M4 12h16M4 17h16" stroke="#5b341a" stroke-width="3" stroke-linecap="round"/></svg>
     </button>
+    <div id="achToast" class="hidden"><span id="achIcon"></span><div><small id="achKick">BAŞARIM AÇILDI</small><b id="achName"></b></div></div>
     <div id="hint"></div>
     <div id="toast"></div>
     <div id="joy"><i></i></div>
@@ -88,7 +89,7 @@
       <button id="mResume" class="big">Devam et</button>
       <div class="row"><button id="mSound" class="soft">Ses: açık</button><button id="mMusic" class="soft">Müzik: açık</button></div>
       <div class="row"><button id="mQuality" class="soft">Grafik: otomatik</button><button id="mLang" class="soft">🌐 Türkçe · English</button></div>
-      <div class="row"><button id="mInstall" class="soft">Uygulama olarak yükle</button></div>
+      <div class="row"><button id="mAch" class="soft">🏆 Başarımlar</button><button id="mInstall" class="soft">Uygulama olarak yükle</button></div>
       <details><summary>Kayıt yedeği</summary>
         <p class="small">Kayıt bu tarayıcıda saklanır; tarayıcı verisi silinirse (Safari'de 7 gün kullanılmazsa) kaybolabilir. Kodu bir yere kaydet.</p>
         <textarea id="saveCode" rows="3" spellcheck="false" placeholder="Kayıt kodu"></textarea>
@@ -97,6 +98,25 @@
       </details>
       <div class="row"><button id="mReset" class="soft danger">Yeni oyun (kaydı sil)</button></div>
       <div class="ver" id="verLabel2"></div>
+    </div>
+  </div>
+
+  <div id="achp" class="screen hidden">
+    <div class="card">
+      <h2>Başarımlar</h2>
+      <div id="achList"></div>
+      <p class="small" id="achCount"></p>
+      <button id="achClose" class="big">Kapat</button>
+    </div>
+  </div>
+
+  <div id="end" class="screen hidden">
+    <div class="card" style="text-align:center">
+      <div style="font-size:54px;line-height:1">🏞️</div>
+      <h2>TEBRİKLER!</h2>
+      <p>Vadi artık senin. Badi, kolonisi ve baraj gölüyle mutlu mesut yaşıyor.</p>
+      <div id="endStats"></div>
+      <button id="endOk" class="big">Vadide gezmeye devam et</button>
     </div>
   </div>
 
@@ -127,8 +147,8 @@
     </div>
   </div>
 </div>
-<script>window.__BV_EXPECT = 'v9';</script>
-<script src="game.js?v=v9" defer></script>
+<script>window.__BV_EXPECT = 'v10';</script>
+<script src="game.js?v=v10" defer></script>
 <script>
 /* Sürüm uyuşmazsa (eski önbellek) önbelleği temizleyip bir kez yeniden yükle. */
 addEventListener('load', function () {
