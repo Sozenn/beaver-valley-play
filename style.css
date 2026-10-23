@@ -202,3 +202,12 @@ button.big:active { box-shadow: 0 2px 0 #9a5a10; }
 .chip { font-size: 11.5px; font-weight: 800; border-radius: 8px; padding: 1px 6px; background: #e4f3c8; border: 2px solid #6aa84f; }
 .chip.no { background: #ffe0d6; border-color: #c0392b; color: #8a1f10; }
 .bgo:disabled { cursor: not-allowed; box-shadow: none; }
+/* Ayarlar / yardım / hakkında / FPS */
+.srow { display: grid; grid-template-columns: 1fr 1.4fr; gap: 12px; align-items: center; margin: 10px 0; font-weight: 800; }
+.srow input[type=range] { width: 100%; accent-color: var(--orange2); height: 30px; }
+.helpCard h3 { margin: 12px 0 2px; font-size: 15px; color: var(--orange2); letter-spacing: .06em; text-transform: uppercase; }
+.helpCard ul { margin: 4px 0 6px; padding-left: 20px; font-size: 14px; line-height: 1.42; font-weight: 600; }
+.helpCard li { margin: 3px 0; }
+#fpsBox { position: absolute; left: calc(8px + var(--sal)); bottom: calc(6px + var(--sab)); z-index: 7; font: 700 11px/1.3 ui-monospace, Consolas, monospace; color: #fff; background: rgba(30,18,8,.6); padding: 3px 7px; border-radius: 8px; pointer-events: none; white-space: pre; }
+#actBtn { width: calc(104px * var(--uis, 1)); height: calc(104px * var(--uis, 1)); }
+#joy { width: calc(112px * var(--uis, 1)); height: calc(112px * var(--uis, 1)); margin: calc(-56px * var(--uis, 1)) 0 0 calc(-56px * var(--uis, 1)); }

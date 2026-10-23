@@ -53,6 +53,7 @@
 
   <div id="banner"><div id="bannerTitle"></div><div id="bannerSub"></div></div>
   <div id="vignette"></div>
+  <div id="fpsBox" class="hidden"></div>
   <div id="fade"><div id="fadeText">Zzz…</div></div>
 
   <div id="title" class="screen">
@@ -89,6 +90,7 @@
       <button id="mResume" class="big">Devam et</button>
       <div class="row"><button id="mSound" class="soft">Ses: açık</button><button id="mMusic" class="soft">Müzik: açık</button></div>
       <div class="row"><button id="mQuality" class="soft">Grafik: otomatik</button><button id="mLang" class="soft">🌐 Türkçe · English</button></div>
+      <div class="row"><button id="mSettings" class="soft">⚙ Ayarlar</button><button id="mHelp" class="soft">❓ Nasıl oynanır</button></div>
       <div class="row"><button id="mAch" class="soft">🏆 Başarımlar</button><button id="mInstall" class="soft">Uygulama olarak yükle</button></div>
       <details><summary>Kayıt yedeği</summary>
         <p class="small">Kayıt bu tarayıcıda saklanır; tarayıcı verisi silinirse (Safari'de 7 gün kullanılmazsa) kaybolabilir. Kodu bir yere kaydet.</p>
@@ -96,7 +98,7 @@
         <div class="row"><button id="mCopy" class="soft">Kodu üret / kopyala</button><button id="mImport" class="soft">Koddan yükle</button></div>
         <div class="small" id="saveMsg"></div>
       </details>
-      <div class="row"><button id="mReset" class="soft danger">Yeni oyun (kaydı sil)</button></div>
+      <div class="row"><button id="mAbout" class="soft">ℹ Hakkında</button><button id="mReset" class="soft danger">Yeni oyun (kaydı sil)</button></div>
       <div class="ver" id="verLabel2"></div>
     </div>
   </div>
@@ -117,6 +119,56 @@
       <p>Vadi artık senin. Badi, kolonisi ve baraj gölüyle mutlu mesut yaşıyor.</p>
       <div id="endStats"></div>
       <button id="endOk" class="big">Vadide gezmeye devam et</button>
+    </div>
+  </div>
+
+  <div id="settings" class="screen hidden">
+    <div class="card">
+      <h2>Ayarlar</h2>
+      <label class="srow"><span>Ses efektleri</span><input id="sSfx" type="range" min="0" max="100" step="5"></label>
+      <label class="srow"><span>Müzik</span><input id="sMus" type="range" min="0" max="100" step="5"></label>
+      <label class="srow"><span>Kontrol boyutu</span><input id="sUi" type="range" min="80" max="140" step="5"></label>
+      <div class="row"><button id="sFps" class="soft">FPS göstergesi: kapalı</button><button id="sHap" class="soft">Titreşim: açık</button></div>
+      <p class="small">FPS göstergesi performans sorunlarını bildirirken işine yarar: kare hızı, çözünürlük ölçeği ve çizim sayısını gösterir.</p>
+      <button id="sClose" class="big">Kapat</button>
+    </div>
+  </div>
+
+  <div id="help" class="screen hidden">
+    <div class="card helpCard">
+      <h2>Nasıl Oynanır</h2>
+      <h3>Kontroller</h3>
+      <ul>
+        <li><b>Yürü:</b> W A S D / oklar · telefonda sol yarıyı sürükle. <b>Koş:</b> Shift / joystick'i sonuna it.</li>
+        <li><b>Eylem:</b> E / Boşluk · büyük düğme. Düğmenin yazısı bulunduğun yere göre değişir: Kemir, Topla, Kır, Kaz, Balık tut, İnşa et, Üret, Davet et, Uyu…</li>
+        <li><b>Kamera:</b> fare sürükle / sağ yarıyı sürükle · tekerlek ya da iki parmakla yakınlaş.</li>
+      </ul>
+      <h3>Kaybolursan</h3>
+      <ul>
+        <li>Sarı <b>ok</b> ve mesafe sana güncel hedefi gösterir; sağ üstteki <b>harita</b> da.</li>
+        <li>Görev panelindeki <b>?</b> düğmesi rehber kartını yeniden açar.</li>
+        <li><b>Çanta</b> envanteri, <b>inşa defteri</b> yapıların maliyetini ve kilidini gösterir.</li>
+      </ul>
+      <h3>İpuçları</h3>
+      <ul>
+        <li>Ağaç devirince odunlar otomatik sırtına gelir; sırtta yer yoksa yerde kalır.</li>
+        <li>Odunu depodan <b>Odun al</b> ile çekebilirsin. Yapılar için odun ve taş lazım.</li>
+        <li>Atölyede çekiç, kazma ve diş yükseltmeleri üret. Gümüş ve altın cevheri parlak kristalli kayalarda.</li>
+        <li>Yağmurda çalılar çabuk meyve verir ve balık çabuk vurur. Kışın yiyecek azalır!</li>
+        <li>Oyun kendiliğinden kaydedilir; menüden yedek kodu alabilirsin.</li>
+      </ul>
+      <button id="helpClose" class="big">Anladım</button>
+    </div>
+  </div>
+
+  <div id="about" class="screen hidden">
+    <div class="card">
+      <h2>Beaver Valley</h2>
+      <p class="small" id="aboutVer"></p>
+      <p>Sevimli kunduz Badi'nin vadisinde keşif, kaynak toplama ve koloni kurma oyunu.</p>
+      <p class="small"><b>Yapım:</b> Sozenn<br><b>3D motor:</b> three.js (MIT)<br><b>Dokular:</b> ambientCG (CC0)<br><b>Karakter, yapılar, ses ve müzik:</b> bu projede kodla ve Blender'da özgün üretildi.</p>
+      <p class="small">© 2026 Sozenn. Tüm hakları saklıdır.</p>
+      <button id="aboutClose" class="big">Kapat</button>
     </div>
   </div>
 
@@ -156,8 +208,8 @@
     </div>
   </div>
 </div>
-<script>window.__BV_EXPECT = 'v13';</script>
-<script src="game.js?v=v13" defer></script>
+<script>window.__BV_EXPECT = 'v14';</script>
+<script src="game.js?v=v14" defer></script>
 <script>
 /* Sürüm uyuşmazsa (eski önbellek) önbelleği temizleyip bir kez yeniden yükle. */
 addEventListener('load', function () {
