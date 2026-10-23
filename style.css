@@ -106,6 +106,7 @@ details { margin: 8px 0; } summary { cursor: pointer; font-weight: 800; padding:
 
 #clock, #stockBadge { position: absolute; left: calc(14px + var(--sal)); background: rgba(255,250,240,.9); border: 3px solid var(--brown); border-radius: 999px; padding: 1px 12px; font-weight: 800; font-size: 14px; box-shadow: 0 3px 0 rgba(91,52,26,.25); }
 #clock { top: calc(66px + var(--sat)); }
+#colonyBadge { position: absolute; left: calc(14px + var(--sal)); top: calc(134px + var(--sat)); background: rgba(255,250,240,.9); border: 3px solid var(--brown); border-radius: 999px; padding: 1px 12px; font-weight: 800; font-size: 14px; box-shadow: 0 3px 0 rgba(91,52,26,.25); }
 #stockBadge { top: calc(100px + var(--sat)); }
 #fade { position: absolute; inset: 0; background: #060814; opacity: 0; pointer-events: none; transition: opacity .8s; z-index: 6; display: grid; place-items: center; }
 #fade.on { opacity: 1; pointer-events: auto; }
