@@ -176,3 +176,13 @@ button.big:active { box-shadow: 0 2px 0 #9a5a10; }
 .slot b { font-size: 22px; line-height: 1; }
 .slot span { font-size: 12px; font-weight: 700; opacity: .85; line-height: 1.15; }
 .slot.empty { opacity: .45; background: rgba(255,243,214,.55); border-style: dashed; }
+/* İnşa defteri */
+#buildBtn { position: absolute; right: calc(14px + var(--sar)); top: calc(260px + var(--sat)); pointer-events: auto; }
+@media (max-width: 700px), (max-height: 520px) { #buildBtn { top: calc(214px + var(--sat)); width: 46px; height: 46px; } }
+#bldList { display: grid; gap: 10px; margin: 12px 0 8px; }
+.brow { display: grid; grid-template-columns: 54px 1fr auto; gap: 10px; align-items: center; background: #fff3d6; border: 3px solid var(--brown); border-radius: 16px; padding: 8px 10px; box-shadow: inset 0 -4px 0 rgba(91,52,26,.12); }
+.brow.lock { opacity: .55; } .brow.done { background: #e4f3c8; }
+.bico svg { width: 44px; height: 44px; display: block; }
+.binfo { display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
+.binfo b { font-size: 17px; } .binfo span { font-size: 12.5px; font-weight: 700; opacity: .85; } .binfo .st { color: var(--orange2); }
+.bgo { height: 38px; padding: 0 14px; border-radius: 19px; border: 3px solid var(--brown); background: linear-gradient(#ffd37a, var(--orange)); color: var(--brown); font: 800 14px inherit; cursor: pointer; box-shadow: 0 3px 0 rgba(91,52,26,.5); }

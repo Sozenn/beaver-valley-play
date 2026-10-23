@@ -1,5 +1,5 @@
 // Servis çalışanı: HTML/JS/CSS her zaman önce ağdan (güncel sürüm), çevrimdışıyken önbellekten; model/doku/simgeler önbellek öncelikli.
-const CACHE = 'beaver-valley-v6';
+const CACHE = 'beaver-valley-v7';
 const FILES = ["./game.js","./icons/icon-192.png","./icons/icon-512.png","./index.html","./manifest.webmanifest","./models/badi.glb","./style.css","./tex/bark_c.jpg","./tex/bark_n.jpg","./tex/grass_c.jpg","./tex/grass_n.jpg","./tex/ground_c.jpg","./tex/ground_n.jpg","./tex/rock_c.jpg","./tex/rock_n.jpg"];
 const HEAVY = /\.(jpg|jpeg|png|webp|glb|ogg|mp3)$/i;
 self.addEventListener('install', (e) => {
