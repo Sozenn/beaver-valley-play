@@ -25,7 +25,7 @@
     </div>
     <div id="clock">☀ 09:00</div>
     <div id="stockBadge" class="hidden" title="Yuva deposu">Depo <b id="stockCount">0</b></div>
-    <div id="colonyBadge" class="hidden" title="Koloni">🦫 <b id="colonyCount">0</b></div>
+    <button id="colonyBadge" class="hidden" type="button" title="Koloni">🦫 <b id="colonyCount">0</b></button>
     <div id="quest">
       <div id="questHead"><div id="questTitle">Görev</div><button id="guideBtn" type="button" aria-label="Rehber">?</button></div>
       <ul id="questList"></ul>
@@ -122,6 +122,16 @@
     </div>
   </div>
 
+  <div id="colony" class="screen hidden">
+    <div class="card">
+      <h2>Koloni</h2>
+      <div id="colonyList"></div>
+      <p class="small" id="colonyNote"></p>
+      <p class="small">Rol seçince kunduz işini değiştirir: oduncu depoya odun, madenci depoya taş, balıkçı kilere balık getirir. Aç kalan kunduzlar çalışmaz.</p>
+      <button id="colonyClose" class="big">Kapat</button>
+    </div>
+  </div>
+
   <div id="settings" class="screen hidden">
     <div class="card">
       <h2>Ayarlar</h2>
@@ -208,8 +218,8 @@
     </div>
   </div>
 </div>
-<script>window.__BV_EXPECT = 'v17';</script>
-<script src="game.js?v=v17" defer></script>
+<script>window.__BV_EXPECT = 'v18';</script>
+<script src="game.js?v=v18" defer></script>
 <script>
 /* Sürüm uyuşmazsa (eski önbellek) önbelleği temizleyip bir kez yeniden yükle. */
 addEventListener('load', function () {
