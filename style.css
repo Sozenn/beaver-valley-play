@@ -220,3 +220,15 @@ button.big:active { box-shadow: 0 2px 0 #9a5a10; }
 .rbtn svg { width: 28px; height: 28px; } .rbtn small { font-size: 10px; font-weight: 700; opacity: .75; line-height: 1.1; text-align: center; }
 .rbtn.on { border-color: var(--brown); background: linear-gradient(#ffd37a, var(--orange)); box-shadow: 0 3px 0 rgba(91,52,26,.5); }
 .rbtn.lock { opacity: .45; cursor: not-allowed; }
+/* Yatay telefon (kısa ekran): kompakt rehber kartı, yan düğmeler yatay dizilir */
+@media (max-height: 520px) {
+  #guide { left: calc(12px + var(--sal)); transform: none; bottom: calc(10px + var(--sab)); width: min(56vw, 470px); padding: 7px 12px 9px; border-width: 3px; border-radius: 16px; animation: guideInL .3s ease-out; }
+  @keyframes guideInL { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  #guideIcon { font-size: 24px; } #guideTitle { font-size: 16px; } #guideKicker { font-size: 9px; }
+  #guideLines { font-size: 11.5px; margin: 3px 0 6px; line-height: 1.28; padding-left: 16px; }
+  #guideLines li { margin: 1px 0; }
+  #guideOk { height: 32px; font-size: 13.5px; border-width: 2px; }
+  #bagBtn { top: calc(70px + var(--sat)); right: calc(14px + var(--sar) + 84px + 10px); }
+  #buildBtn { top: calc(70px + var(--sat)); right: calc(14px + var(--sar) + 84px + 10px + 52px); }
+  #hint { bottom: calc(6px + var(--sab)); }
+}
